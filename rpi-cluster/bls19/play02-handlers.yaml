@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: install apt
+      apt: name=docker-ce update_cache=yes state=latest
+      ignore_errors: true
+      notify: my handler
+    - name: install yum
+      yum: name=docker-ce state=latest
+      ignore_errors: true
+      notify: my handler
+
+  # handler will only be executed if task change something and is successful! That means
+  # if docker is already installed the handler will NOT be called!
+  handlers:
+    - name: my handler
+      service: name=docker enabled=true state=started

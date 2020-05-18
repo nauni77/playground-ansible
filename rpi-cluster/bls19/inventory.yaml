@@ -1,0 +1,12 @@
+all:
+#  hosts:
+#    mail.example.com:
+  children:
+    master:
+      hosts:
+        pi@rpi01.intra.bls19.de:
+    worker:
+      hosts:
+        pi@rpi02.intra.bls19.de:
+        pi@rpi03.intra.bls19.de:
+        pi@rpi04.intra.bls19.de:

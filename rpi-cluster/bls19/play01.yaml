@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: execute unmae
+      shell: uname -a > /home/pi/result.txt
+    - name: execute whoami
+      shell: whoami >> /home/pi/result.txt
+    - name: show file content
+      raw: cat /home/pi/result.txt
